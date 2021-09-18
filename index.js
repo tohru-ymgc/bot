@@ -5,12 +5,19 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`Logged in as ${client.user.tag}!`);
+    const ch_name = "独り言";
+    client.channels.forEach(channel =>{
+        if(channel.name === ch_name){
+            channel.send("オンラインになりました。/n;;+文字入力でfizzbuzzが起動します。");
+        };
+    });
 });
 
 client.on('message', message => {
     if(message.author.bot) return;
     if(message.channel.name !== "一般") return;
+    let messagebox = message.content.replace(";;","");
     let check = Number(message.content);
     if (Number.isInteger(check) === false) { 
         message.reply("整数を入力してね。");
@@ -26,3 +33,4 @@ client.on('message', message => {
 });
 
 client.login(process.env.DISCORD_TOKEN)
+
