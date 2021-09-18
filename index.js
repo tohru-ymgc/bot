@@ -6,6 +6,8 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
+    client.channels.cache.filter(ch => ch.name === '独り言').forEach(ch => ch.send('オンラインになりました。\n::+文字入力でfizzbuzzが起動します。'))
+    //client.channels.cache.find(ch => ch.name === '独り言').send('オンラインになりました。\n::+文字入力でfizzbuzzが起動します。')
     //const ch_name = "一般";
     //client.channels.forEach(channel =>{
     //    if(channel.name === ch_name){
